@@ -65,7 +65,7 @@ const App = () => {
     }
   }
 
-  const handleCreateBlog = async (event) => {
+  const handleCreateBlog = (event) => {
     event.preventDefault()
     const blogObject = {
       title: title,
@@ -76,7 +76,7 @@ const App = () => {
 
     blogService
       .create(blogObject)
-        .then(returnedBlog => {
+      .then(returnedBlog => {
         setBlogs(blogs.concat(returnedBlog))
         setTitle('')
         setAuthor('')
