@@ -7,7 +7,7 @@ const App = () => {
   const [blogs, setBlogs] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [user, setUser] = useState('')
+  const [user, setUser] = useState(null)
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
@@ -83,7 +83,7 @@ const App = () => {
       })
   }
 
-  if (user === null) {
+  const loginForm = () => {
     return (
       <div>
         <h2>Log in to application</h2>
@@ -112,15 +112,16 @@ const App = () => {
     )
   }
 
-  return (
-    <div>
+  const blogForm = () => {
+    return (
+      <div>
       <h2>blogs</h2>
       <p>
         {user.name} logged in
         <button type="submit" onClick={handleLogout}>logout</button>
       </p>
       <h2>create new</h2>
-      <form onSubmit={handleCreateBlog}>
+        <form onSubmit={handleCreateBlog}>
           <div>
             title:
             <input
@@ -154,6 +155,18 @@ const App = () => {
         <Blog key={blog.id} blog={blog} />
       )}
     </div>
+    )
+  }
+
+  return (
+    <div>
+    {/* <Notification message={errorMessage} /> */}
+
+    {user === null && loginForm()}
+    {user !== null && blogForm()}
+    
+    
+  </div>
   )
 }
 
