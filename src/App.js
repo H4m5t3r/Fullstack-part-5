@@ -91,7 +91,7 @@ const App = () => {
     }, 5000)
   }
 
-  const loginForm = () => {
+  const LoginForm = () => {
     return (
       <div>
         <h2>Log in to application</h2>
@@ -120,7 +120,7 @@ const App = () => {
     )
   }
 
-  const blogForm = () => {
+  const BlogForm = () => {
     const hideWhenVisible = { display: blogFormVisible ? 'none' : '' }
     const showWhenVisible = { display: blogFormVisible ? '' : 'none' }
 
@@ -204,8 +204,8 @@ const App = () => {
     <ErrorNotification message={errorMessage} />
     <SuccessNotification message={successMessage} />
 
-    {user === null && loginForm()}
-    {user !== null && blogForm()}
+    {user === null && LoginForm()}
+    {user !== null && BlogForm()}
     </div>
   )
 }
