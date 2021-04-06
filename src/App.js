@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Blog from './components/Blog'
 import blogService from './services/blogs'
 import loginService from './services/login'
-import ErrorNotification from './components/Notification'
-import SuccessNotification from './components/Notification'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -45,7 +43,7 @@ const App = () => {
       setUsername('')
       setPassword('')
     } catch (exception) {
-      setErrorMessage('Wrong credentials')
+      setErrorMessage('wrong username or password')
       setTimeout(() => {
         setErrorMessage(null)
       }, 5000)
@@ -84,6 +82,12 @@ const App = () => {
         setAuthor('')
         setUrl('')
       })
+    setSuccessMessage(
+      `a new blog ${blogObject.title} by ${blogObject.author} added`
+    )
+    setTimeout(() => {
+      setSuccessMessage(null)
+    }, 5000)
   }
 
   const loginForm = () => {
@@ -161,10 +165,34 @@ const App = () => {
     )
   }
 
+  const ErrorNotification = ({ message }) => {
+    if (message === null) {
+      return null
+    }
+  
+    return (
+      <div className="error">
+        {message}
+      </div>
+    )
+  }
+
+  const SuccessNotification = ({ message }) => {
+    if (message === null) {
+      return null
+    }
+  
+    return (
+      <div className="success">
+        {message}
+      </div>
+    )
+  }
+
   return (
     <div>
-    {/* <ErrorNotification message={errorMessage} /> */}
-    {/* <SuccessNotification message={successMessage} /> */}
+    <ErrorNotification message={errorMessage} />
+    <SuccessNotification message={successMessage} />
 
     {user === null && loginForm()}
     {user !== null && blogForm()}
