@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Blog from './components/Blog'
 import blogService from './services/blogs'
 import loginService from './services/login'
+import ErrorNotification from './components/Notification'
+import SuccessNotification from './components/Notification'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -12,6 +14,7 @@ const App = () => {
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
+  const [successMessage, setSuccessMessage] = useState(null)
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -160,13 +163,12 @@ const App = () => {
 
   return (
     <div>
-    {/* <Notification message={errorMessage} /> */}
+    {/* <ErrorNotification message={errorMessage} /> */}
+    {/* <SuccessNotification message={successMessage} /> */}
 
     {user === null && loginForm()}
     {user !== null && blogForm()}
-    
-    
-  </div>
+    </div>
   )
 }
 
