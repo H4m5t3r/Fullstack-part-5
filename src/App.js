@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Blog from './components/Blog'
 import blogService from './services/blogs'
 import loginService from './services/login'
+import BlogForm from './components/BlogForm'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -91,7 +92,7 @@ const App = () => {
     }, 5000)
   }
 
-  const LoginForm = () => {
+  const loginForm = () => {
     return (
       <div>
         <h2>Log in to application</h2>
@@ -120,7 +121,7 @@ const App = () => {
     )
   }
 
-  const BlogForm = () => {
+  const blogForm = () => {
     const hideWhenVisible = { display: blogFormVisible ? 'none' : '' }
     const showWhenVisible = { display: blogFormVisible ? '' : 'none' }
 
@@ -135,37 +136,15 @@ const App = () => {
           <button onClick={() => setBlogFormVisible(true)}>new blog</button>
         </div>
         <div style={showWhenVisible}>
-          <h2>create new</h2>
-          <form onSubmit={handleCreateBlog}>
-            <div>
-              title:
-              <input
-              type="text"
-              value={title}
-              name="Title"
-              onChange={({ target }) => setTitle(target.value)}
-              />
-              </div>
-              <div>
-                author:
-                <input
-                type="text"
-                value={author}
-                name="Author"
-                onChange={({ target }) => setAuthor(target.value)}
-                />
-              </div>
-              <div>
-                url:
-                <input
-                type="text"
-                value={url}
-                name="Url"
-                onChange={({ target }) => setUrl(target.value)}
-                />
-              </div>
-            <button type="submit">create</button>
-          </form>
+          <BlogForm
+            title={title}
+            author={author}
+            url={url}
+            handleTitleChange={({ target }) => setTitle(target.value)}
+            handleAuthorChange={({ target }) => setAuthor(target.value)}
+            handleUrlChange={({ target }) => setUrl(target.value)}
+            handleSubmit={handleCreateBlog}
+          />
           <button onClick={() => setBlogFormVisible(false)}>cancel</button>
         </div>
       {blogs.map(blog =>
@@ -204,8 +183,8 @@ const App = () => {
     <ErrorNotification message={errorMessage} />
     <SuccessNotification message={successMessage} />
 
-    {user === null && LoginForm()}
-    {user !== null && BlogForm()}
+    {user === null && loginForm()}
+    {user !== null && blogForm()}
     </div>
   )
 }
