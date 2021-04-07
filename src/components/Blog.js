@@ -8,15 +8,32 @@ const Blog = ({ blog }) => {
     marginBottom: 5
   }
 
-  const [showAllInfo, setVisible] = useState(false)
+  const [extendedInfo, setExtended] = useState(false)
 
-  const hideWhenVisible = { display: showAllInfo ? 'none' : '' }
-  const showWhenVisible = { display: showAllInfo ? '' : 'none' }
+  const hideWhenExtended = { display: extendedInfo ? 'none' : '' }
+  const showWhenExtended = { display: extendedInfo ? '' : 'none' }
+
+  const toggleVisibility = () => {
+    setExtended(!extendedInfo)
+  }
 
   return (
     <div style={blogStyle}>
-      <div>
-        {blog.title} {blog.author}
+      <div style ={hideWhenExtended}>
+        {blog.title} {blog.author} <button
+        onClick={toggleVisibility}>view</button>
+      </div>
+      <div style ={showWhenExtended}>
+        <div>
+          {blog.title} {blog.author} <button
+          onClick={toggleVisibility}>hide</button>
+        </div>
+        <div>{blog.url}</div>
+        <div>
+          likes {blog.likes} <button
+          >like</button>
+        </div>
+        {/* <div>{blog.user.id}</div> */}
       </div>
     </div>
   )

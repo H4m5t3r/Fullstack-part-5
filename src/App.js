@@ -113,10 +113,10 @@ const App = () => {
       <div>
         <h2>blogs</h2>
         <p>
-          {user.name} logged in
-          <button type="submit" onClick={handleLogout}>logout</button>
+          {user.name} logged in <button
+          type="submit" onClick={handleLogout}>logout</button>
         </p>
-        <Togglable buttonLabel="new blog">
+        <Togglable buttonLabel="create new blog">
           <BlogForm
             createBlog={addBlog}
             user = {user}
