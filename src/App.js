@@ -3,6 +3,7 @@ import Blog from './components/Blog'
 import blogService from './services/blogs'
 import loginService from './services/login'
 import BlogForm from './components/BlogForm'
+import Togglable from './components/Togglable'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -122,9 +123,6 @@ const App = () => {
   }
 
   const blogForm = () => {
-    const hideWhenVisible = { display: blogFormVisible ? 'none' : '' }
-    const showWhenVisible = { display: blogFormVisible ? '' : 'none' }
-
     return (
       <div>
         <h2>blogs</h2>
@@ -132,10 +130,7 @@ const App = () => {
           {user.name} logged in
           <button type="submit" onClick={handleLogout}>logout</button>
         </p>
-        <div style={hideWhenVisible}>
-          <button onClick={() => setBlogFormVisible(true)}>new blog</button>
-        </div>
-        <div style={showWhenVisible}>
+        <Togglable buttonLabel="new blog">
           <BlogForm
             title={title}
             author={author}
@@ -145,11 +140,10 @@ const App = () => {
             handleUrlChange={({ target }) => setUrl(target.value)}
             handleSubmit={handleCreateBlog}
           />
-          <button onClick={() => setBlogFormVisible(false)}>cancel</button>
-        </div>
-      {blogs.map(blog =>
-        <Blog key={blog.id} blog={blog} />
-      )}
+        </Togglable>
+        {blogs.map(blog =>
+          <Blog key={blog.id} blog={blog} />
+        )}
       </div>
     )
   }
