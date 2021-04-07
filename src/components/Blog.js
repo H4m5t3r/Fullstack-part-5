@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 const Blog = ({ blog }) => {
   const blogStyle = {
     paddingTop: 10,
@@ -8,9 +8,16 @@ const Blog = ({ blog }) => {
     marginBottom: 5
   }
 
+  const [showAllInfo, setVisible] = useState(false)
+
+  const hideWhenVisible = { display: showAllInfo ? 'none' : '' }
+  const showWhenVisible = { display: showAllInfo ? '' : 'none' }
+
   return (
-    <div>
-      {blog.title} {blog.author}
+    <div style={blogStyle}>
+      <div>
+        {blog.title} {blog.author}
+      </div>
     </div>
   )
 }
