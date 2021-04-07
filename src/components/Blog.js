@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+
 const Blog = ({ blog }) => {
   const blogStyle = {
     paddingTop: 10,
@@ -33,7 +34,7 @@ const Blog = ({ blog }) => {
           likes {blog.likes} <button
           >like</button>
         </div>
-        {/* <div>{blog.user.id}</div> */}
+        <div>{JSON.stringify(blog.user)}</div>
       </div>
     </div>
   )
