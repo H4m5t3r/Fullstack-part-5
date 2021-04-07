@@ -24,7 +24,7 @@ const Blog = ({ blog }) => {
         {blog.title} {blog.author} <button
         onClick={toggleVisibility}>view</button>
       </div>
-      <div style ={showWhenExtended}>
+      <div style={showWhenExtended}>
         <div>
           {blog.title} {blog.author} <button
           onClick={toggleVisibility}>hide</button>
@@ -34,7 +34,9 @@ const Blog = ({ blog }) => {
           likes {blog.likes} <button
           >like</button>
         </div>
-        <div>{JSON.stringify(blog.user)}</div>
+        <div>
+          {blog.user.name}
+        </div>
       </div>
     </div>
   )
