@@ -13,10 +13,14 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
 
-  useEffect(() => {
+  const updateBlogList = () => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
-    )  
+    )
+  }
+
+  useEffect(() => {
+    updateBlogList()
   }, [])
 
   useEffect(() => {
@@ -78,6 +82,12 @@ const App = () => {
     }, 5000)
   }
 
+  const addLike = async (blog) => {
+    blog.likes += 1
+    await blogService.update(blog.id, blog)
+    setBlogs(blogs.map(oldBlog => oldBlog.id !== blog.id ? oldBlog : blog))
+  }
+
   const loginForm = () => {
     return (
       <div>
@@ -121,9 +131,15 @@ const App = () => {
             user = {user}
           />
         </Togglable>
-        {blogs.map(blog =>
-          <Blog key={blog.id} blog={blog} />
-        )}
+        <ul>
+          {blogs.map(blog =>
+            <Blog
+              key={blog.id}
+              blog={blog}
+              addLike={() => addLike(blog)}
+            />
+          )}
+        </ul>
       </div>
     )
   }
