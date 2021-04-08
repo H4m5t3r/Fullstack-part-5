@@ -85,8 +85,13 @@ const App = () => {
   const addLike = async (blog) => {
     blog.likes += 1
     await blogService.update(blog.id, blog)
-    setBlogs(blogs.map(oldBlog => oldBlog.id !== blog.id ? oldBlog : blog))
+    updateBlogList()
   }
+
+  // const handleDeleteBlog = async (blog) => {
+  //   await blogService.delete(blog.id)
+    
+  // }
 
   const loginForm = () => {
     return (
