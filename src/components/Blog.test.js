@@ -1,6 +1,6 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { render } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 // import { prettyDOM } from '@testing-library/dom'
 import Blog from './Blog'
 describe('<Blog />', () => {
@@ -21,12 +21,13 @@ describe('<Blog />', () => {
     name: 'Brunhilde',
     id: '606ada6afa67a7035428475f'
   }
-
   let component
+  let mockHandler
 
   beforeEach(() => {
+    mockHandler = jest.fn()
     component = render(
-      <Blog blog={blog} user={user} />
+      <Blog blog={blog} user={user} toggleVisibility={mockHandler} />
     )
   })
 
@@ -43,6 +44,13 @@ describe('<Blog />', () => {
   test('does not render the extended vesion by default', () => {
     const div = component.container.querySelector('.extended')
     expect(div).toHaveStyle('display: none')
+  })
+
+  test('the url and number of likes are shown when the button is clicked', () => {
+    const button = component.getByText('view')
+    fireEvent.click(button)
+    const div = component.container.querySelector('.extended')
+    expect(div).not.toHaveStyle('display: none')
   })
 
 })
