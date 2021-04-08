@@ -19,12 +19,12 @@ const Blog = ({ blog, addLike, removeBlog, user }) => {
   }
 
   return (
-    <div style={blogStyle}>
-      <div style ={hideWhenExtended}>
+    <div style={blogStyle} className='blog'>
+      <div style ={hideWhenExtended} className="short">
         {blog.title} {blog.author} <button
           onClick={toggleVisibility}>view</button>
       </div>
-      <div style={showWhenExtended}>
+      <div style={showWhenExtended} className="extended">
         <div>
           {blog.title} {blog.author} <button
             onClick={toggleVisibility}>hide</button>
