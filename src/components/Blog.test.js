@@ -27,7 +27,7 @@ describe('<Blog />', () => {
   beforeEach(() => {
     mockHandler = jest.fn()
     component = render(
-      <Blog blog={blog} user={user} toggleVisibility={mockHandler} />
+      <Blog blog={blog} user={user} addLike={mockHandler} removeBlog={mockHandler} />
     )
   })
 
@@ -51,6 +51,13 @@ describe('<Blog />', () => {
     fireEvent.click(button)
     const div = component.container.querySelector('.extended')
     expect(div).not.toHaveStyle('display: none')
+  })
+
+  test('component function is called twice when like button is clicked twice', () => {
+    const button = component.getByText('like')
+    fireEvent.click(button)
+    fireEvent.click(button)
+    expect(mockHandler.mock.calls).toHaveLength(2)
   })
 
 })
