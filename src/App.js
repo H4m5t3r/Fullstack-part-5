@@ -106,21 +106,21 @@ const App = () => {
           <div>
             username
             <input
-            type="text"
-            value={username}
-            name="Username"
-            onChange={({ target }) => setUsername(target.value)}
+              type="text"
+              value={username}
+              name="Username"
+              onChange={({ target }) => setUsername(target.value)}
             />
-            </div>
-            <div>
-              password
-              <input
+          </div>
+          <div>
+            password
+            <input
               type="password"
               value={password}
               name="Password"
               onChange={({ target }) => setPassword(target.value)}
-              />
-            </div>
+            />
+          </div>
           <button type="submit">login</button>
         </form>
       </div>
@@ -133,7 +133,7 @@ const App = () => {
         <h2>blogs</h2>
         <p>
           {user.name} logged in <button
-          type="submit" onClick={handleLogout}>logout</button>
+            type="submit" onClick={handleLogout}>logout</button>
         </p>
         <Togglable buttonLabel='create new blog' ref={blogFormRef}>
           <BlogForm
@@ -160,7 +160,7 @@ const App = () => {
     if (message === null) {
       return null
     }
-  
+
     return (
       <div className="error">
         {message}
@@ -172,7 +172,7 @@ const App = () => {
     if (message === null) {
       return null
     }
-  
+
     return (
       <div className="success">
         {message}
@@ -182,11 +182,11 @@ const App = () => {
 
   return (
     <div>
-    <ErrorNotification message={errorMessage} />
-    <SuccessNotification message={successMessage} />
+      <ErrorNotification message={errorMessage} />
+      <SuccessNotification message={successMessage} />
 
-    {user === null && loginForm()}
-    {user !== null && blogForm()}
+      {user === null && loginForm()}
+      {user !== null && blogForm()}
     </div>
   )
 }

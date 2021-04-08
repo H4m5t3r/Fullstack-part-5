@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 const Blog = ({ blog, addLike, removeBlog, user }) => {
   const blogStyle = {
@@ -22,12 +22,12 @@ const Blog = ({ blog, addLike, removeBlog, user }) => {
     <div style={blogStyle}>
       <div style ={hideWhenExtended}>
         {blog.title} {blog.author} <button
-        onClick={toggleVisibility}>view</button>
+          onClick={toggleVisibility}>view</button>
       </div>
       <div style={showWhenExtended}>
         <div>
           {blog.title} {blog.author} <button
-          onClick={toggleVisibility}>hide</button>
+            onClick={toggleVisibility}>hide</button>
         </div>
         <div>{blog.url}</div>
         <div>
@@ -38,10 +38,10 @@ const Blog = ({ blog, addLike, removeBlog, user }) => {
           {blog.user.name}
         </div>
         <div>
-        {user.username === blog.user.username ?
-          <button onClick={removeBlog}>remove</button>
-          : null
-        }
+          {user.username === blog.user.username ?
+            <button onClick={removeBlog}>remove</button>
+            : null
+          }
         </div>
       </div>
     </div>
