@@ -15,7 +15,7 @@ const App = () => {
 
   const updateBlogList = () => {
     blogService.getAll().then(blogs =>
-      setBlogs( blogs )
+      setBlogs(blogs.sort((b1, b2) => (b1.likes > b2.likes) ? -1 : 1))
     )
   }
 
@@ -131,7 +131,7 @@ const App = () => {
             user = {user}
           />
         </Togglable>
-        <ul>
+        <li>
           {blogs.map(blog =>
             <Blog
               key={blog.id}
@@ -139,7 +139,7 @@ const App = () => {
               addLike={() => addLike(blog)}
             />
           )}
-        </ul>
+        </li>
       </div>
     )
   }
