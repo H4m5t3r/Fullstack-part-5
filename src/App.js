@@ -88,10 +88,12 @@ const App = () => {
     updateBlogList()
   }
 
-  // const handleDeleteBlog = async (blog) => {
-  //   await blogService.delete(blog.id)
-    
-  // }
+  const handleDeleteBlog = async (blog) => {
+    if (window.confirm(`Remove blog ${blog.title} by ${blog.user.name}?`)) {
+      await blogService.remove(blog.id, user)
+      updateBlogList()
+    }
+  }
 
   const loginForm = () => {
     return (
@@ -142,6 +144,8 @@ const App = () => {
               key={blog.id}
               blog={blog}
               addLike={() => addLike(blog)}
+              removeBlog={() => handleDeleteBlog(blog)}
+              user={user}
             />
           )}
         </li>
