@@ -39,35 +39,19 @@ describe('Blog app', function() {
       cy.get('#login-button').click()
     })
 
-    it('A blog can be created', function() {
+    it('A blog can be created and liked', function() {
       cy.get('#toggle-button').click()
       cy.get('#title').type('This is a test')
       cy.get('#author').type('testbot')
       cy.get('#url').type('www.testbot.com')
       cy.get('#submit-blog-button').click()
+
       cy.contains('This is a test by testbot added')
       cy.contains('This is a test testbot')
       cy.contains('view').click()
       cy.contains('www.testbot.com')
       cy.contains('likes 0')
-    })
-  })
 
-  describe('A blog has been created', function() {
-    beforeEach(function() {
-      cy.get('#username').type('h4m5t3r')
-      cy.get('#password').type('hemligt')
-      cy.get('#login-button').click()
-      cy.get('#toggle-button').click()
-      cy.get('#title').type('This is a test')
-      cy.get('#author').type('testbot')
-      cy.get('#url').type('www.testbot.com')
-      cy.get('#submit-blog-button').click()
-    })
-
-    it('A user can like a blog', function() {
-      cy.contains('view').click()
-      cy.contains('likes 0')
       cy.contains('like').click()
       cy.contains('likes 1')
     })
