@@ -52,4 +52,24 @@ describe('Blog app', function() {
       cy.contains('likes 0')
     })
   })
+
+  describe('A blog has been created', function() {
+    beforeEach(function() {
+      cy.get('#username').type('h4m5t3r')
+      cy.get('#password').type('hemligt')
+      cy.get('#login-button').click()
+      cy.get('#toggle-button').click()
+      cy.get('#title').type('This is a test')
+      cy.get('#author').type('testbot')
+      cy.get('#url').type('www.testbot.com')
+      cy.get('#submit-blog-button').click()
+    })
+
+    it('A user can like a blog', function() {
+      cy.contains('view').click()
+      cy.contains('likes 0')
+      cy.contains('like').click()
+      cy.contains('likes 1')
+    })
+  })
 })
